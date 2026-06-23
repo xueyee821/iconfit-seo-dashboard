@@ -1,0 +1,83 @@
+{
+  "health_score": 75,
+  "total_issues": 663,
+  "errors": 49,
+  "warnings": 257,
+  "notices": 357,
+  "pages_crawled": 145,
+  "urls_found": 486,
+  "issues": {
+    "broken_4xx": {
+      "count": 17,
+      "label": "4XX \u65ad\u94fe",
+      "severity": "\u4e25\u91cd",
+      "description": "17\u4e2a\u9875\u9762\u8fd4\u56de404\u9519\u8bef\uff0c\u591a\u4e2a\u542b _wp_link_placeholder\uff08WordPress\u7f16\u8f91\u5668\u6b8b\u7559\u94fe\u63a5\u53d1\u5e03\u5230\u7ebf\u4e0a\uff09",
+      "effort": "1\u5c0f\u65f6",
+      "fix": "WordPress \u2192 \u627e\u5230\u542b _wp_link_placeholder \u7684\u535a\u5ba2\u6587\u7ae0 \u2192 \u4fee\u590d\u6216\u5220\u9664\u65ad\u94fe"
+    },
+    "redirects_3xx": {
+      "count": 10,
+      "label": "3XX \u91cd\u5b9a\u5411\u94fe",
+      "severity": "\u4e2d",
+      "description": "10\u4e2a\u9875\u9762\u6709\u91cd\u5b9a\u5411\uff08\u53ef\u80fd\u662f\u6539URL\u540e\u672a\u66f4\u65b0\u5185\u94fe\uff09",
+      "effort": "30\u5206\u949f",
+      "fix": "\u627e\u5230\u91cd\u5b9a\u5411\u6765\u6e90\u9875\u9762\uff0c\u66f4\u65b0\u5185\u90e8\u94fe\u63a5\u76f4\u63a5\u6307\u5411\u6700\u7ec8URL"
+    },
+    "duplicate_titles": {
+      "count": 32,
+      "label": "\u91cd\u590d\u9875\u9762\u6807\u9898",
+      "severity": "\u9ad8",
+      "description": "32\u4e2a\u9875\u9762\u6807\u9898\u91cd\u590d\uff08\u82f1\u6587\u548c\u4e2d\u6587/zh/\u7248\u672c\u5171\u7528\u540c\u4e00\u6807\u9898\uff0cTranslatePress\u672a\u7ffb\u8bd1\u6807\u9898\uff09",
+      "effort": "2\u5c0f\u65f6",
+      "fix": "TranslatePress \u2192 \u9010\u9875\u7ffb\u8bd1 meta title\uff0c\u6216\u5728 Rank Math \u4e2d\u4e3a\u6bcf\u4e2a/zh/\u9875\u9762\u8bbe\u7f6e\u72ec\u7acb\u6807\u9898"
+    },
+    "duplicate_descriptions": {
+      "count": 32,
+      "label": "\u91cd\u590d Meta Description",
+      "severity": "\u9ad8",
+      "description": "32\u4e2a\u9875\u9762 meta description \u4e0e\u4e2d\u6587\u7248\u5b8c\u5168\u4e00\u6837",
+      "effort": "2\u5c0f\u65f6",
+      "fix": "\u540c\u4e0a\uff0c\u5728 TranslatePress \u4e2d\u7ffb\u8bd1 meta description"
+    },
+    "duplicate_h1": {
+      "count": 14,
+      "label": "\u91cd\u590d H1 \u6807\u7b7e",
+      "severity": "\u4e2d",
+      "description": "14\u4e2a\u9875\u9762 H1 \u4e0e\u4e2d\u6587\u7248\u5b8c\u5168\u4e00\u6837\uff08\u672a\u7ffb\u8bd1\uff09",
+      "effort": "1\u5c0f\u65f6",
+      "fix": "TranslatePress \u2192 \u7ffb\u8bd1\u5404\u9875\u9762 H1 \u5185\u5bb9"
+    },
+    "title_too_long": {
+      "count": 14,
+      "label": "\u6807\u9898\u8fc7\u957f\uff08>60\u5b57\u7b26\uff09",
+      "severity": "\u4e2d",
+      "description": "14\u4e2a\u535a\u5ba2\u6587\u7ae0\u6807\u9898\u8d85\u8fc760\u5b57\u7b26\uff0c\u5728\u641c\u7d22\u7ed3\u679c\u4e2d\u4f1a\u88ab\u622a\u65ad",
+      "effort": "1\u5c0f\u65f6",
+      "fix": "Rank Math \u2192 \u9010\u7bc7\u535a\u5ba2 \u2192 SEO\u6807\u9898 \u2192 \u7f29\u77ed\u81f360\u5b57\u7b26\u4ee5\u5185"
+    },
+    "title_too_short": {
+      "count": 15,
+      "label": "\u4e2d\u6587\u6807\u9898\u8fc7\u77ed",
+      "severity": "\u4f4e",
+      "description": "15\u4e2a\u4e2d\u6587\u9875\u9762\u6807\u9898\u592a\u77ed\uff08\u4e3b\u8981\u662f/zh/\u9875\u9762\u672a\u7ffb\u8bd1\u6807\u9898\uff09",
+      "effort": "1\u5c0f\u65f6",
+      "fix": "\u4e3a\u4e2d\u6587\u9875\u9762\u6dfb\u52a0\u5b8c\u6574\u7684\u4e2d\u6587\u6807\u9898\uff0830-60\u5b57\u7b26\uff09"
+    },
+    "slow_pages": {
+      "count": 113,
+      "label": "\u9875\u9762\u52a0\u8f7d\u901f\u5ea6\u6162",
+      "severity": "\u9ad8",
+      "description": "113\u4e2a\u9875\u9762\u88ab\u6807\u8bb0\u4e3a\u52a0\u8f7d\u901f\u5ea6\u6162",
+      "effort": "\u6301\u7eed",
+      "fix": "Elementor \u2192 \u5f00\u542f Improved Asset Loading\uff1bBreeze \u2192 \u5f00\u542f JS defer + CSS \u5408\u5e76"
+    },
+    "missing_x_default": {
+      "count": 118,
+      "label": "\u7f3a\u5c11 x-default hreflang",
+      "severity": "\u9ad8",
+      "description": "118\u4e2a\u9875\u9762\u7f3a\u5c11 x-default hreflang \u6807\u7b7e\uff0c\u5f71\u54cd\u591a\u8bed\u8a00 SEO",
+      "effort": "15\u5206\u949f",
+      "fix": "Rank Math \u2192 Titles & Meta \u2192 \u52a0\u5165 hreflang x-default \u6807\u7b7e"
+    }
+  }
+}

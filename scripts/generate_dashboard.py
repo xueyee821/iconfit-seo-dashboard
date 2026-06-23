@@ -10,6 +10,13 @@ ga4     = d['ga4']
 tech    = d['technical']
 gen_at  = d['generated_at'][:10]
 
+# SE Ranking data stored separately so weekly auto-run doesn't overwrite it
+try:
+    with open('data/seranking.json') as f:
+        ser = json.load(f)
+except Exception:
+    ser = {}
+
 def score_color(s):
     if s >= 70: return '#16a34a'
     if s >= 50: return '#f59e0b'
@@ -45,6 +52,14 @@ issues = [
     ('内容', '没有隐私政策页面', False, '中', '添加 Privacy Policy 页面（PDPA 合规要求）', '30分钟'),
     ('性能', '浏览器缓存 max-age=0', False, '中', 'Breeze → 缓存设置 → 浏览器缓存 → 设为 86400（1天）', '10分钟'),
     ('性能', 'JS 没有 defer', False, '中', 'Elementor → Experiments → Improved Asset Loading → 开启', '10分钟'),
+    # SE Ranking issues
+    ('链接健康', '17个断链含 _wp_link_placeholder（WordPress草稿链接发布到线上）', False, '严重', '搜索博客内容中含 _wp_link_placeholder 的链接，修复或删除', '1小时'),
+    ('链接健康', '10个内部链接经过3XX重定向（旧URL未更新）', False, '中', '找到重定向链接来源，更新为最终目标URL', '30分钟'),
+    ('多语言SEO', '32个页面标题中英文重复（TranslatePress未翻译）', False, '高', 'TranslatePress → 逐页翻译 SEO 标题', '2小时'),
+    ('多语言SEO', '32个 Meta Description 中英文重复', False, '高', 'TranslatePress → 逐页翻译 meta description', '2小时'),
+    ('多语言SEO', '14个 H1 中英文重复', False, '中', 'TranslatePress → 翻译各页面主标题', '1小时'),
+    ('多语言SEO', '118个页面缺少 x-default hreflang', False, '高', 'Rank Math → Titles & Meta → Global meta → 添加 hreflang x-default', '15分钟'),
+    ('域名', '🚨 域名 iconfit.asia 将于 2026-08-15 到期（仅约7周）', False, '严重', '立即登入域名注册商续费！过期将导致网站完全下线', '立即'),
 ]
 
 fixed_count = sum(1 for i in issues if i[2])
@@ -58,7 +73,7 @@ for issue in issues:
     by_cat[issue[0]].append(issue)
 
 cat_html = ''
-cat_colors = {'安全':'#ef4444','AI 可见度':'#8b5cf6','Schema':'#3b82f6','本地SEO':'#f59e0b','内容':'#10b981','性能':'#6366f1'}
+cat_colors = {'安全':'#ef4444','AI 可见度':'#8b5cf6','Schema':'#3b82f6','本地SEO':'#f59e0b','内容':'#10b981','性能':'#6366f1','链接健康':'#0ea5e9','多语言SEO':'#a855f7','域名':'#dc2626'}
 
 for cat, items in by_cat.items():
     color = cat_colors.get(cat, '#888')
@@ -201,6 +216,16 @@ html = f'''<!DOCTYPE html>
   </div>
 </div>
 
+<!-- CRITICAL: Domain Expiry Alert -->
+<div style="background:#fef2f2;border:2px solid #ef4444;border-radius:12px;padding:14px 20px;margin-bottom:14px;display:flex;align-items:center;gap:14px;">
+  <span style="font-size:28px;">🚨</span>
+  <div>
+    <div style="font-size:14px;font-weight:800;color:#dc2626;">域名即将到期！iconfit.asia 将于 2026-08-15 到期</div>
+    <div style="font-size:12px;color:#ef4444;margin-top:3px;">距今仅约 <strong>7 周</strong>。若未续费，网站将完全下线，GSC 排名清零，一切 SEO 工作归零。</div>
+    <div style="font-size:12px;color:#991b1b;margin-top:4px;">⚡ 立即行动：登入域名注册商 → 续费 iconfit.asia</div>
+  </div>
+</div>
+
 <!-- Progress Bar -->
 <div class="card" style="padding:16px 20px;">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
@@ -279,9 +304,40 @@ html = f'''<!DOCTYPE html>
   {cat_html}
 </div>
 
+<!-- SE Ranking Section -->
+<div class="card">
+  <h2>📊 SE Ranking 网站健康报告（2026-06-23 手动导入）</h2>
+  <div class="g4" style="margin-bottom:16px;">
+    <div style="text-align:center;background:#fef9c3;border-radius:8px;padding:12px;">
+      <div style="font-size:28px;font-weight:800;color:#f59e0b;">{ser.get("health_score",0)}<span style="font-size:14px;">/100</span></div>
+      <div style="font-size:11px;color:#888;">SE Ranking 健康评分</div>
+    </div>
+    <div style="text-align:center;background:#fef2f2;border-radius:8px;padding:12px;">
+      <div style="font-size:28px;font-weight:800;color:#ef4444;">{ser.get("errors",0)}</div>
+      <div style="font-size:11px;color:#888;">严重错误</div>
+    </div>
+    <div style="text-align:center;background:#fff7ed;border-radius:8px;padding:12px;">
+      <div style="font-size:28px;font-weight:800;color:#f59e0b;">{ser.get("warnings",0)}</div>
+      <div style="font-size:11px;color:#888;">警告</div>
+    </div>
+    <div style="text-align:center;background:#f0fdf4;border-radius:8px;padding:12px;">
+      <div style="font-size:28px;font-weight:800;color:#16a34a;">{ser.get("notices",0)}</div>
+      <div style="font-size:11px;color:#888;">提示</div>
+    </div>
+  </div>
+  <div style="font-size:12px;color:#888;margin-bottom:12px;">共 {ser.get("total_issues",0)} 个问题 · 爬取 {ser.get("pages_crawled",0)} 个页面 · 发现 {ser.get("urls_found",0)} 个 URL</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
+    {"".join(f'''<div style="background:#f8fafc;border-radius:8px;padding:10px;border-left:3px solid {'#ef4444' if v['severity']=='严重' else '#f59e0b' if v['severity']=='高' else '#6b7280'};">
+      <div style="font-size:11px;font-weight:700;color:#1a1a1a;">{v['label']}</div>
+      <div style="font-size:20px;font-weight:800;color:{'#ef4444' if v['severity']=='严重' else '#f59e0b' if v['severity']=='高' else '#6b7280'};margin:2px 0;">{v['count']}</div>
+      <div style="font-size:10px;color:#888;">{v['description'][:60]}...</div>
+    </div>''' for v in ser.get("issues",{}).values())}
+  </div>
+</div>
+
 <!-- Footer -->
 <div style="text-align:center;padding:16px;font-size:11px;color:#94a3b8;">
-  数据来源：Google Search Console · Google Analytics 4 · 实时技术检测 · 每周一 09:00（马来西亚时间）自动更新
+  数据来源：Google Search Console · Google Analytics 4 · 实时技术检测 · SE Ranking（手动导入）· 每周一 09:00（马来西亚时间）自动更新
 </div>
 
 </div>
