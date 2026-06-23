@@ -1,79 +1,169 @@
-"""Generate static HTML dashboard from latest audit data."""
+"""Generate comprehensive HTML dashboard from latest audit data."""
 import json, os, datetime
 
 with open('data/latest.json') as f:
     d = json.load(f)
 
-scores   = d['scores']
-gsc      = d['gsc']
-ga4      = d['ga4']
-tech     = d['technical']
-gen_at   = d['generated_at'][:10]
+scores  = d['scores']
+gsc     = d['gsc']
+ga4     = d['ga4']
+tech    = d['technical']
+gen_at  = d['generated_at'][:10]
 
 def score_color(s):
     if s >= 70: return '#16a34a'
     if s >= 50: return '#f59e0b'
     return '#ef4444'
 
-def pct_bar(pct, color='#4f46e5'):
-    return f'<div style="background:#e5e7eb;border-radius:4px;height:8px;"><div style="background:{color};width:{min(pct,100)}%;height:8px;border-radius:4px;"></div></div>'
+def score_label(s):
+    if s >= 70: return '良好'
+    if s >= 50: return '需改善'
+    return '严重'
 
-# Build keyword rows
+def bar(pct, color='#4f46e5', height=8):
+    return f'<div style="background:#e5e7eb;border-radius:4px;height:{height}px;"><div style="background:{color};width:{min(float(pct),100):.0f}%;height:{height}px;border-radius:4px;transition:width 0.3s;"></div></div>'
+
+# ── Issues checklist ──────────────────────────────────────────
+issues = [
+    # (category, title, status, severity, fix, effort)
+    ('安全', 'REST API 用户账号外露（8个账号公开）', not tech['rest_api_exposed'], '严重', 'functions.php 加入 REST API 过滤，或用 Wordfence 封锁 /wp-json/wp/v2/users', '15分钟'),
+    ('安全', '5个安全 Headers 全部缺失', tech['security_headers'] >= 5, '严重', 'Cloudflare → Transform Rules → Modify Response Header → 一次加入5个', '15分钟'),
+    ('安全', 'WordPress 版本外露', not tech['wp_version_exposed'], '中', 'functions.php 加入 remove_action("wp_head","wp_generator")', '5分钟'),
+    ('安全', 'xmlrpc.php 在 head 中广告', not tech['xmlrpc_advertised'], '中', 'functions.php 加入 remove_action("wp_head","rsd_link")，再用 Cloudflare WAF 封锁路径', '10分钟'),
+    ('AI 可见度', 'ClaudeBot 被单独封锁（GPTBot 可进）', tech['claudebot_allowed'], '严重', 'Cloudflare → Security → WAF → 找封锁 ClaudeBot 的规则 → 删除', '5分钟'),
+    ('AI 可见度', '/llms.txt 已创建', tech['has_llms_txt'], '高', 'WordPress functions.php 已加入 llms.txt 代码', '完成'),
+    ('Schema', 'Organization name 还是 "iconfit.asia"', False, '高', 'Rank Math → Local SEO → Business Info → Business Name → 改为 "Iconfit"', '5分钟'),
+    ('Schema', 'Homepage 有 Article schema', False, '高', 'Rank Math → 首页 → Schema 标签 → 删除 Article 区块', '10分钟'),
+    ('Schema', 'Person.sameAs 有 staging URL', False, '中', 'WordPress → 用户 → Ricky → 删除 cloudwaysapps.com 链接', '5分钟'),
+    ('Schema', 'openingHours 格式错误', False, '低', 'Rank Math → Local SEO → Opening Hours → 格式改为 Mo Tu We Th Fr 18:00-22:00', '5分钟'),
+    ('本地SEO', '两个不同电话号码', False, '高', '统一用 019-297 9122，更新网站所有页面 + Google Business Profile', '30分钟'),
+    ('本地SEO', 'hreflang 用 en-US 而非 en-MY', False, '中', 'Rank Math → Titles & Meta → 更改 hreflang，加入 x-default', '15分钟'),
+    ('内容', '/zh/about-us/ 跳出率 91%', False, '高', '中文 About 页面内容重写，确保加载正常且内容完整', '2小时'),
+    ('内容', '没有教练/团队页面', False, '高', '创建 /our-team/ 页面，加入教练照片、资历、专长', '4小时'),
+    ('内容', '博客文章平均只有700字', False, '中', '将热门文章扩展至1500+字，加入本地化内容', '持续'),
+    ('内容', '63篇博客全在 Uncategorized', False, '低', '创建分类：健身技巧、初学者指南、课程介绍等', '1小时'),
+    ('内容', '没有隐私政策页面', False, '中', '添加 Privacy Policy 页面（PDPA 合规要求）', '30分钟'),
+    ('性能', '浏览器缓存 max-age=0', False, '中', 'Breeze → 缓存设置 → 浏览器缓存 → 设为 86400（1天）', '10分钟'),
+    ('性能', 'JS 没有 defer', False, '中', 'Elementor → Experiments → Improved Asset Loading → 开启', '10分钟'),
+]
+
+fixed_count = sum(1 for i in issues if i[2])
+total_count = len(issues)
+progress_pct = round(fixed_count / total_count * 100)
+
+# Group by category
+from collections import defaultdict
+by_cat = defaultdict(list)
+for issue in issues:
+    by_cat[issue[0]].append(issue)
+
+cat_html = ''
+cat_colors = {'安全':'#ef4444','AI 可见度':'#8b5cf6','Schema':'#3b82f6','本地SEO':'#f59e0b','内容':'#10b981','性能':'#6366f1'}
+
+for cat, items in by_cat.items():
+    color = cat_colors.get(cat, '#888')
+    fixed = sum(1 for i in items if i[2])
+    rows = ''
+    for _, title, status, severity, fix, effort in items:
+        icon = '✅' if status else '❌'
+        sev_color = '#ef4444' if severity=='严重' else '#f59e0b' if severity=='高' else '#6b7280'
+        rows += f'''<tr style="border-bottom:1px solid #f3f4f6;{'opacity:0.6;' if status else ''}">
+            <td style="padding:8px 10px;font-size:12px;">{icon}</td>
+            <td style="padding:8px 10px;font-size:12px;{'text-decoration:line-through;color:#999;' if status else ''}">{title}</td>
+            <td style="padding:8px 10px;text-align:center;"><span style="background:{sev_color}22;color:{sev_color};padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;">{severity}</span></td>
+            <td style="padding:8px 10px;font-size:11px;color:#888;">{effort}</td>
+            <td style="padding:8px 10px;font-size:11px;color:#555;max-width:200px;">{fix if not status else "已完成"}</td>
+        </tr>'''
+    cat_html += f'''<div style="margin-bottom:16px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+            <span style="background:{color};color:white;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;">{cat}</span>
+            <span style="font-size:12px;color:#888;">{fixed}/{len(items)} 已修复</span>
+        </div>
+        <div style="background:white;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);">
+        <table style="width:100%;border-collapse:collapse;">
+            <tr style="background:#f8fafc;border-bottom:2px solid #e5e7eb;">
+                <th style="padding:7px 10px;font-size:11px;color:#888;text-align:left;width:30px;"></th>
+                <th style="padding:7px 10px;font-size:11px;color:#888;text-align:left;">问题</th>
+                <th style="padding:7px 10px;font-size:11px;color:#888;text-align:center;width:60px;">优先级</th>
+                <th style="padding:7px 10px;font-size:11px;color:#888;text-align:left;width:70px;">工时</th>
+                <th style="padding:7px 10px;font-size:11px;color:#888;text-align:left;">修复方法</th>
+            </tr>
+            {rows}
+        </table></div></div>'''
+
+# ── Keyword table ─────────────────────────────────────────────
 kw_rows = ''
-for q in gsc['top_queries'][:8]:
-    opp = ''
+for q in gsc['top_queries'][:10]:
     if q['impressions'] > 100 and q['clicks'] < 5:
-        opp = '<span style="background:#fef2f2;color:#ef4444;padding:2px 8px;border-radius:4px;font-size:11px;">大机会</span>'
-    elif q['position'] <= 5:
-        opp = '<span style="background:#dcfce7;color:#16a34a;padding:2px 8px;border-radius:4px;font-size:11px;">保持</span>'
+        tag = '<span style="background:#fef2f2;color:#ef4444;padding:2px 6px;border-radius:4px;font-size:11px;">大机会</span>'
+    elif q['position'] <= 5 and q['clicks'] > 5:
+        tag = '<span style="background:#dcfce7;color:#16a34a;padding:2px 6px;border-radius:4px;font-size:11px;">保持</span>'
+    elif q['position'] > 20:
+        tag = '<span style="background:#fef2f2;color:#ef4444;padding:2px 6px;border-radius:4px;font-size:11px;">排名太低</span>'
     else:
-        opp = '<span style="background:#fef9c3;color:#ca8a04;padding:2px 8px;border-radius:4px;font-size:11px;">优化</span>'
+        tag = '<span style="background:#fef9c3;color:#ca8a04;padding:2px 6px;border-radius:4px;font-size:11px;">优化</span>'
+    pos_color = '#16a34a' if q['position'] <= 5 else '#f59e0b' if q['position'] <= 15 else '#ef4444'
     kw_rows += f'''<tr style="border-bottom:1px solid #f3f4f6;">
         <td style="padding:7px 8px;font-size:12px;">{q["query"]}</td>
-        <td style="text-align:center;padding:7px 8px;font-size:12px;">{q["impressions"]}</td>
-        <td style="text-align:center;padding:7px 8px;font-size:12px;font-weight:600;">{q["clicks"]}</td>
-        <td style="text-align:center;padding:7px 8px;font-size:12px;">#{q["position"]}</td>
-        <td style="text-align:center;padding:7px 8px;">{opp}</td>
+        <td style="text-align:center;padding:7px 8px;font-size:12px;">{int(q["impressions"]):,}</td>
+        <td style="text-align:center;padding:7px 8px;font-size:12px;font-weight:700;color:{'#16a34a' if q['clicks']>5 else '#ef4444' if q['clicks']==0 else '#f59e0b'};">{int(q["clicks"])}</td>
+        <td style="text-align:center;padding:7px 8px;font-size:12px;color:{pos_color};font-weight:700;">#{q["position"]:.0f}</td>
+        <td style="text-align:center;padding:7px 8px;font-size:12px;">{q["ctr"]:.1f}%</td>
+        <td style="text-align:center;padding:7px 8px;">{tag}</td>
     </tr>'''
 
-# Build page rows
+# ── GA4 page table ────────────────────────────────────────────
 page_rows = ''
 for p in ga4['top_pages'][:8]:
     bc = '#ef4444' if p['bounce'] > 70 else '#f59e0b' if p['bounce'] > 40 else '#16a34a'
+    flag = ' ⚠️' if p['bounce'] > 80 else ''
     page_rows += f'''<tr style="border-bottom:1px solid #f3f4f6;">
-        <td style="padding:7px 8px;font-size:12px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{p["page"]}</td>
-        <td style="text-align:center;padding:7px 8px;font-size:12px;">{p["sessions"]}</td>
-        <td style="text-align:center;padding:7px 8px;font-size:12px;color:{bc};font-weight:600;">{p["bounce"]}%</td>
+        <td style="padding:7px 8px;font-size:12px;">{p["page"]}{flag}</td>
+        <td style="text-align:center;padding:7px 8px;font-size:12px;font-weight:600;">{p["sessions"]}</td>
+        <td style="text-align:center;padding:7px 8px;font-size:12px;color:{bc};font-weight:700;">{p["bounce"]:.0f}%</td>
         <td style="text-align:center;padding:7px 8px;font-size:12px;">{p["duration"]}s</td>
     </tr>'''
 
-# Channel rows
-channel_rows = ''
-total_s = ga4['total_sessions'] or 1
-for ch in ga4['channels']:
-    pct = round(ch['sessions'] / total_s * 100)
-    channel_rows += f'''<div style="margin-bottom:10px;">
-        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;">
-            <span style="font-weight:600;">{ch["channel"]}</span>
-            <span style="color:#888;">{ch["sessions"]} 次 · 停留 {ch["duration"]}s · 跳出 {ch["bounce"]}%</span>
-        </div>
-        {pct_bar(pct)}
+# ── Score category cards ──────────────────────────────────────
+cat_cards = ''
+for key, label in [('technical','技术 SEO'),('schema','Schema'),('content','内容质量'),('on_page','页面优化'),('performance','性能'),('ai','AI 可见度'),('images','图片')]:
+    s = scores[key]
+    c = score_color(s)
+    lbl = score_label(s)
+    cat_cards += f'''<div style="background:white;border-radius:10px;padding:14px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.06);">
+        <div style="font-size:26px;font-weight:800;color:{c};">{s}</div>
+        <div style="font-size:11px;font-weight:600;color:#555;margin:2px 0;">{label}</div>
+        <div style="font-size:10px;color:{c};background:{c}22;padding:1px 6px;border-radius:4px;display:inline-block;">{lbl}</div>
+        <div style="margin-top:8px;">{bar(s, c, 6)}</div>
     </div>'''
 
-# Tech checks
-def check(ok, label):
-    icon = '✅' if ok else '❌'
-    return f'<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #f3f4f6;font-size:12px;"><span>{icon}</span><span>{label}</span></div>'
+# ── Channel rows ──────────────────────────────────────────────
+total_s = ga4['total_sessions'] or 1
+ch_rows = ''
+for ch in ga4['channels']:
+    pct = round(ch['sessions'] / total_s * 100)
+    color = '#16a34a' if ch['channel']=='Organic Search' else '#94a3b8'
+    dur_min = f"{ch['duration']//60}分{ch['duration']%60}秒" if ch['duration'] >= 60 else f"{ch['duration']}秒"
+    ch_rows += f'''<div style="margin-bottom:10px;">
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;">
+            <span style="font-weight:600;color:{'#16a34a' if ch['channel']=='Organic Search' else 'inherit'};">{ch["channel"]} {'⭐' if ch['channel']=='Organic Search' else ''}</span>
+            <span style="color:#888;">{ch["sessions"]}次 · 停留{dur_min} · 跳出{ch["bounce"]}%</span>
+        </div>
+        {bar(pct, color, 8)}
+    </div>'''
 
-tech_checks = (
-    check(not tech['rest_api_exposed'], 'REST API 用户保护（' + ('已保护' if not tech['rest_api_exposed'] else f'{tech["rest_api_users"]}个账号外露') + '）') +
-    check(tech['security_headers'] >= 5, f'安全 Headers（{tech["security_headers"]}/5 已设置）') +
-    check(not tech['wp_version_exposed'], 'WordPress 版本隐藏') +
-    check(not tech['xmlrpc_advertised'], 'xmlrpc.php 已隐藏') +
-    check(tech['has_llms_txt'], '/llms.txt 已创建') +
-    check(tech['gptbot_allowed'], 'GPTBot 可访问（ChatGPT）') +
-    check(tech['claudebot_allowed'], 'ClaudeBot 可访问（Claude AI）')
-)
+# ── Priority quick wins ───────────────────────────────────────
+quick_wins = [i for i in issues if not i[2] and i[5] in ['5分钟','10分钟','15分钟']]
+qw_html = ''
+for _, title, _, sev, fix, effort in quick_wins[:6]:
+    qw_html += f'''<div style="display:flex;align-items:flex-start;gap:10px;background:white;border-radius:8px;padding:10px 12px;margin-bottom:6px;box-shadow:0 1px 2px rgba(0,0,0,.05);">
+        <span style="background:#f59e0b;color:white;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">⚡</span>
+        <div style="flex:1;">
+            <div style="font-size:12px;font-weight:600;">{title}</div>
+            <div style="font-size:11px;color:#888;margin-top:2px;">{fix}</div>
+        </div>
+        <span style="font-size:11px;color:#888;flex-shrink:0;white-space:nowrap;">{effort}</span>
+    </div>'''
 
 html = f'''<!DOCTYPE html>
 <html lang="zh">
@@ -82,102 +172,117 @@ html = f'''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Iconfit SEO Dashboard</title>
 <style>
-  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f8fafc; color: #1a1a1a; }}
-  .container {{ max-width: 900px; margin: 0 auto; padding: 24px 16px; }}
-  .card {{ background: white; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }}
-  h1 {{ font-size: 20px; font-weight: 800; }}
-  h2 {{ font-size: 14px; font-weight: 700; margin-bottom: 14px; }}
-  .grid-2 {{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }}
-  .grid-4 {{ display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }}
-  .score-big {{ font-size: 36px; font-weight: 800; }}
-  .label {{ font-size: 11px; color: #888; }}
-  table {{ width: 100%; border-collapse: collapse; }}
-  th {{ font-size: 11px; color: #888; font-weight: 600; padding: 5px 8px; text-align: center; border-bottom: 2px solid #f3f4f6; }}
-  th:first-child {{ text-align: left; }}
-  @media(max-width:600px) {{ .grid-2,.grid-4 {{ grid-template-columns: 1fr; }} }}
+  * {{ box-sizing:border-box;margin:0;padding:0; }}
+  body {{ font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f1f5f9;color:#1a1a1a; }}
+  .wrap {{ max-width:960px;margin:0 auto;padding:20px 16px; }}
+  .card {{ background:white;border-radius:12px;padding:20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.07); }}
+  h2 {{ font-size:14px;font-weight:700;margin-bottom:14px;color:#1a1a1a; }}
+  .g2 {{ display:grid;grid-template-columns:1fr 1fr;gap:14px; }}
+  .g4 {{ display:grid;grid-template-columns:repeat(4,1fr);gap:10px; }}
+  .g7 {{ display:grid;grid-template-columns:repeat(7,1fr);gap:8px; }}
+  table {{ width:100%;border-collapse:collapse; }}
+  th {{ font-size:11px;color:#888;font-weight:600;padding:6px 8px;text-align:left;border-bottom:2px solid #f3f4f6; }}
+  .tag {{ padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600; }}
+  @media(max-width:640px){{.g2,.g4,.g7{{grid-template-columns:1fr 1fr;}}}}
 </style>
 </head>
 <body>
-<div class="container">
+<div class="wrap">
 
-  <!-- Header -->
-  <div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
-    <div>
-      <h1>Iconfit SEO Dashboard</h1>
-      <div class="label" style="margin-top:4px;">iconfit.asia · 数据更新：{gen_at} · 统计周期：过去90天</div>
-    </div>
-    <div style="text-align:center;">
-      <div class="score-big" style="color:{score_color(scores['overall'])};">{scores['overall']}</div>
-      <div class="label">/ 100 总评分</div>
-    </div>
+<!-- Header -->
+<div class="card" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;background:linear-gradient(135deg,#1e293b,#334155);color:white;">
+  <div>
+    <div style="font-size:20px;font-weight:800;">Iconfit SEO Dashboard</div>
+    <div style="font-size:12px;color:#94a3b8;margin-top:4px;">iconfit.asia · 更新：{gen_at} · 每周一自动刷新 · 统计：过去90天</div>
   </div>
-
-  <!-- Score Cards -->
-  <div class="grid-4" style="margin-bottom:16px;">
-    {''.join(f"""<div class="card" style="text-align:center;padding:14px;">
-      <div style="font-size:24px;font-weight:800;color:{score_color(scores[k])};">{scores[k]}</div>
-      <div class="label">{label}</div>
-    </div>""" for k,label in [('technical','技术 SEO'),('schema','Schema'),('content','内容质量'),('ai','AI 可见度')])}
+  <div style="text-align:center;background:rgba(255,255,255,.1);border-radius:12px;padding:12px 20px;">
+    <div style="font-size:40px;font-weight:800;color:{score_color(scores['overall'])};">{scores['overall']}</div>
+    <div style="font-size:12px;color:#94a3b8;">/ 100 SEO 总评分</div>
   </div>
+</div>
 
-  <!-- GSC + GA4 Summary -->
-  <div class="grid-2">
-    <div class="card">
-      <h2>搜索表现（GSC）</h2>
-      <div class="grid-4" style="margin-bottom:0;">
-        <div style="text-align:center;">
-          <div style="font-size:22px;font-weight:800;color:#4f46e5;">{gsc["total_clicks"]}</div>
-          <div class="label">点击</div>
-        </div>
-        <div style="text-align:center;">
-          <div style="font-size:22px;font-weight:800;color:#4f46e5;">{gsc["total_impressions"]:,}</div>
-          <div class="label">曝光</div>
-        </div>
-        <div style="text-align:center;">
-          <div style="font-size:22px;font-weight:800;color:{'#ef4444' if gsc['avg_ctr']<1 else '#16a34a'};">{gsc["avg_ctr"]}%</div>
-          <div class="label">CTR</div>
-        </div>
-        <div style="text-align:center;">
-          <div style="font-size:22px;font-weight:800;color:#f59e0b;">#{gsc["avg_position"]}</div>
-          <div class="label">平均排名</div>
-        </div>
+<!-- Progress Bar -->
+<div class="card" style="padding:16px 20px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+    <span style="font-size:13px;font-weight:700;">修复进度</span>
+    <span style="font-size:13px;color:#888;">{fixed_count} / {total_count} 已完成 ({progress_pct}%)</span>
+  </div>
+  {bar(progress_pct, '#16a34a', 12)}
+  <div style="display:flex;gap:16px;margin-top:10px;font-size:11px;color:#888;">
+    <span>✅ {fixed_count} 已修复</span>
+    <span>❌ {total_count - fixed_count} 待修复</span>
+    <span>⚡ {len(quick_wins)} 个5-15分钟快速修复</span>
+  </div>
+</div>
+
+<!-- Score Cards -->
+<div class="g7" style="margin-bottom:14px;">{cat_cards}</div>
+
+<!-- Quick Wins -->
+<div class="card">
+  <h2>⚡ 快速修复（每项15分钟内完成）</h2>
+  {qw_html}
+</div>
+
+<!-- GSC + GA4 -->
+<div class="g2">
+  <div class="card">
+    <h2>搜索表现（Google Search Console）</h2>
+    <div class="g4" style="margin-bottom:14px;">
+      <div style="text-align:center;background:#f8fafc;border-radius:8px;padding:10px;">
+        <div style="font-size:22px;font-weight:800;color:#4f46e5;">{int(gsc["total_clicks"])}</div>
+        <div style="font-size:11px;color:#888;">总点击</div>
+      </div>
+      <div style="text-align:center;background:#f8fafc;border-radius:8px;padding:10px;">
+        <div style="font-size:22px;font-weight:800;color:#4f46e5;">{int(gsc["total_impressions"]):,}</div>
+        <div style="font-size:11px;color:#888;">总曝光</div>
+      </div>
+      <div style="text-align:center;background:#f8fafc;border-radius:8px;padding:10px;">
+        <div style="font-size:22px;font-weight:800;color:{'#ef4444' if gsc['avg_ctr']<1 else '#16a34a'};">{gsc["avg_ctr"]:.2f}%</div>
+        <div style="font-size:11px;color:#888;">平均CTR</div>
+      </div>
+      <div style="text-align:center;background:#f8fafc;border-radius:8px;padding:10px;">
+        <div style="font-size:22px;font-weight:800;color:#f59e0b;">#{gsc["avg_position"]}</div>
+        <div style="font-size:11px;color:#888;">平均排名</div>
       </div>
     </div>
-    <div class="card">
-      <h2>网站流量（GA4）</h2>
-      <div style="font-size:28px;font-weight:800;color:#4f46e5;margin-bottom:10px;">{ga4["total_sessions"]} <span style="font-size:14px;color:#888;font-weight:400;">次访问</span></div>
-      {channel_rows}
-    </div>
+    <h2 style="font-size:12px;color:#888;margin-bottom:8px;">关键词机会</h2>
+    <table>
+      <tr><th>关键词</th><th style="text-align:center;">曝光</th><th style="text-align:center;">点击</th><th style="text-align:center;">排名</th><th style="text-align:center;">CTR</th><th style="text-align:center;">状态</th></tr>
+      {kw_rows}
+    </table>
   </div>
-
-  <!-- Keywords + Pages -->
-  <div class="grid-2">
-    <div class="card">
-      <h2>关键词排名机会（GSC）</h2>
-      <table>
-        <tr><th style="text-align:left;">关键词</th><th>曝光</th><th>点击</th><th>排名</th><th>状态</th></tr>
-        {kw_rows}
-      </table>
-    </div>
-    <div class="card">
-      <h2>页面表现（GA4）</h2>
-      <table>
-        <tr><th style="text-align:left;">页面</th><th>访问</th><th>跳出率</th><th>停留</th></tr>
-        {page_rows}
-      </table>
-    </div>
-  </div>
-
-  <!-- Technical Checks -->
   <div class="card">
-    <h2>技术健康检查</h2>
-    {tech_checks}
+    <h2>网站流量（Google Analytics 4）</h2>
+    <div style="text-align:center;margin-bottom:14px;">
+      <div style="font-size:32px;font-weight:800;color:#4f46e5;">{ga4["total_sessions"]}</div>
+      <div style="font-size:12px;color:#888;">总访问次数（90天）</div>
+    </div>
+    {ch_rows}
+    <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin:10px 0;font-size:12px;color:#16a34a;">
+      💡 自然搜索访客停留时间最长，是最高质量流量来源
+    </div>
+    <h2 style="font-size:12px;color:#888;margin-top:12px;margin-bottom:8px;">页面表现</h2>
+    <table>
+      <tr><th>页面</th><th style="text-align:center;">访问</th><th style="text-align:center;">跳出率</th><th style="text-align:center;">停留</th></tr>
+      {page_rows}
+    </table>
   </div>
+</div>
 
-  <div style="text-align:center;padding:16px;font-size:11px;color:#aaa;">
-    每周一自动更新 · 数据来源：Google Search Console + GA4 + 实时技术检测
+<!-- Full Checklist -->
+<div class="card">
+  <h2>📋 完整问题清单 & 修复指引</h2>
+  <div style="background:#fef9c3;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:#92400e;">
+    ⚠️ 优先修复「严重」和「高」优先级问题，这些对排名影响最大。每修复一项，下周 dashboard 会自动更新状态。
   </div>
+  {cat_html}
+</div>
+
+<!-- Footer -->
+<div style="text-align:center;padding:16px;font-size:11px;color:#94a3b8;">
+  数据来源：Google Search Console · Google Analytics 4 · 实时技术检测 · 每周一 09:00（马来西亚时间）自动更新
+</div>
 
 </div>
 </body>
@@ -186,5 +291,4 @@ html = f'''<!DOCTYPE html>
 os.makedirs('docs', exist_ok=True)
 with open('docs/index.html', 'w', encoding='utf-8') as f:
     f.write(html)
-
 print("✅ Dashboard generated at docs/index.html")
