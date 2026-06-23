@@ -1,0 +1,217 @@
+{
+  "generated_at": "2026-06-23T13:45:38.517262Z",
+  "site": "https://iconfit.asia",
+  "period_days": 90,
+  "scores": {
+    "overall": 52,
+    "technical": 56,
+    "content": 58,
+    "on_page": 55,
+    "schema": 42,
+    "performance": 50,
+    "ai": 28,
+    "images": 75
+  },
+  "gsc": {
+    "total_clicks": 68,
+    "total_impressions": 15368,
+    "avg_ctr": 0.44,
+    "avg_position": 7.2,
+    "top_queries": [
+      {
+        "query": "gym setia alam",
+        "clicks": 1,
+        "impressions": 384,
+        "ctr": 0.26,
+        "position": 16.8
+      },
+      {
+        "query": "iconfit setia alam",
+        "clicks": 2,
+        "impressions": 240,
+        "ctr": 0.83,
+        "position": 2.3
+      },
+      {
+        "query": "iconfit",
+        "clicks": 31,
+        "impressions": 215,
+        "ctr": 14.42,
+        "position": 3.4
+      },
+      {
+        "query": "setia alam fitness",
+        "clicks": 1,
+        "impressions": 125,
+        "ctr": 0.8,
+        "position": 21.9
+      },
+      {
+        "query": "beginner workout malaysia",
+        "clicks": 0,
+        "impressions": 109,
+        "ctr": 0.0,
+        "position": 19.5
+      },
+      {
+        "query": "shine dance fitness vs zumba",
+        "clicks": 2,
+        "impressions": 107,
+        "ctr": 1.87,
+        "position": 8.6
+      },
+      {
+        "query": "iconfit fitness",
+        "clicks": 4,
+        "impressions": 122,
+        "ctr": 3.28,
+        "position": 2.0
+      },
+      {
+        "query": "beginner gym shah alam",
+        "clicks": 0,
+        "impressions": 36,
+        "ctr": 0.0,
+        "position": 64.7
+      }
+    ],
+    "top_pages": [
+      {
+        "page": "/",
+        "clicks": 51,
+        "impressions": 3551,
+        "position": 7.2
+      },
+      {
+        "page": "/zumba-classes-vs-dance-fitness/",
+        "clicks": 6,
+        "impressions": 3787,
+        "position": 10.2
+      },
+      {
+        "page": "/contact-us/",
+        "clicks": 1,
+        "impressions": 1997,
+        "position": 25.3
+      },
+      {
+        "page": "/fitness-classes/",
+        "clicks": 1,
+        "impressions": 167,
+        "position": 50.1
+      }
+    ],
+    "countries": [
+      {
+        "country": "MYS",
+        "clicks": 53
+      },
+      {
+        "country": "USA",
+        "clicks": 5
+      },
+      {
+        "country": "SGP",
+        "clicks": 4
+      }
+    ],
+    "devices": [
+      {
+        "device": "DESKTOP",
+        "clicks": 48,
+        "impressions": 13031
+      },
+      {
+        "device": "MOBILE",
+        "clicks": 19,
+        "impressions": 2317
+      }
+    ]
+  },
+  "ga4": {
+    "total_sessions": 776,
+    "channels": [
+      {
+        "channel": "Direct",
+        "sessions": 592,
+        "users": 531,
+        "bounce": 89.5,
+        "duration": 92
+      },
+      {
+        "channel": "Organic Search",
+        "sessions": 154,
+        "users": 47,
+        "bounce": 33.1,
+        "duration": 1334
+      },
+      {
+        "channel": "Referral",
+        "sessions": 20,
+        "users": 17,
+        "bounce": 10.0,
+        "duration": 166
+      }
+    ],
+    "top_pages": [
+      {
+        "page": "/",
+        "sessions": 212,
+        "bounce": 34.4,
+        "duration": 479
+      },
+      {
+        "page": "/zh/about-us/",
+        "sessions": 122,
+        "bounce": 91.0,
+        "duration": 22
+      },
+      {
+        "page": "/resources/",
+        "sessions": 85,
+        "bounce": 49.4,
+        "duration": 270
+      },
+      {
+        "page": "/free-pass/",
+        "sessions": 73,
+        "bounce": 16.4,
+        "duration": 168
+      },
+      {
+        "page": "/about-us/",
+        "sessions": 48,
+        "bounce": 20.8,
+        "duration": 217
+      },
+      {
+        "page": "/contact-us/",
+        "sessions": 36,
+        "bounce": 8.3,
+        "duration": 123
+      },
+      {
+        "page": "/fitness-classes/",
+        "sessions": 18,
+        "bounce": 22.2,
+        "duration": 196
+      }
+    ]
+  },
+  "technical": {
+    "has_hsts": false,
+    "has_xframe": false,
+    "has_xcontent": false,
+    "has_csp": false,
+    "has_permissions": false,
+    "security_headers": 0,
+    "rest_api_exposed": true,
+    "rest_api_users": 8,
+    "has_llms_txt": true,
+    "gptbot_allowed": true,
+    "claudebot_allowed": false,
+    "wp_version_exposed": true,
+    "wp_version": "7.0",
+    "xmlrpc_advertised": true
+  }
+}
