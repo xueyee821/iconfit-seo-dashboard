@@ -32,6 +32,12 @@ jobs:
           GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
         run: python scripts/audit.py
 
+      - name: Fetch SE Ranking Audit Data
+        env:
+          SERANKING_API_KEY: ${{ secrets.SERANKING_API_KEY }}
+          SERANKING_AUDIT_ID: ${{ secrets.SERANKING_AUDIT_ID }}
+        run: python scripts/fetch_seranking.py
+
       - name: Generate Dashboard
         run: python scripts/generate_dashboard.py
 
