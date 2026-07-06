@@ -324,7 +324,7 @@ html = f'''<!DOCTYPE html>
 
 <!-- SE Ranking Section -->
 <div class="card">
-  <h2>📊 SE Ranking 网站健康报告（2026-06-23 手动导入）</h2>
+  <h2>📊 SE Ranking 网站健康报告（{ser.get('updated_at', '')} · {ser.get('source', '')}）</h2>
   <div class="g4" style="margin-bottom:16px;">
     <div style="text-align:center;background:#fef9c3;border-radius:8px;padding:12px;">
       <div style="font-size:28px;font-weight:800;color:#f59e0b;">{ser.get("health_score",0)}<span style="font-size:14px;">/100</span></div>
@@ -351,7 +351,7 @@ html = f'''<!DOCTYPE html>
 
 <!-- Footer -->
 <div style="text-align:center;padding:16px;font-size:11px;color:#94a3b8;">
-  数据来源：Google Search Console · Google Analytics 4 · 实时技术检测 · SE Ranking（手动导入）· 每周一 09:00（马来西亚时间）自动更新
+  数据来源：Google Search Console · Google Analytics 4 · 实时技术检测 · SE Ranking · 每周一 09:00（马来西亚时间）自动更新
 </div>
 
 </div>
