@@ -1,15 +1,14 @@
 {
-  "updated_at": "2026-06-24",
+  "updated_at": "2026-07-06",
   "source": "SE Ranking API (自动)",
   "audit_id": 700348552,
   "site_id": 10531667,
-  "health_score": 77,
-  "total_issues": 483,
+  "health_score": 79,
+  "total_issues": 444,
   "errors": 50,
-  "warnings": 76,
-  "notices": 357,
+  "warnings": 51,
+  "notices": 343,
   "pages_crawled": 146,
-  "urls_found": 486,
   "domain_expiry": "2026-08-15",
   "domain_trust": 18,
   "backlinks": 43,
@@ -65,10 +64,10 @@
       "fix": "将 Title 标签改为包含关键词的完整句子，H1 保持简短标题"
     },
     "slow_pages": {
-      "count": 51,
+      "count": 11,
       "label": "页面加载速度慢",
       "severity": "高",
-      "description": "51个页面被标记为加载速度慢",
+      "description": "11个页面被标记为加载速度慢（上周51个，本周大幅改善）",
       "effort": "持续",
       "fix": "Elementor → Improved Asset Loading；Breeze → JS defer + CSS 合并"
     },
