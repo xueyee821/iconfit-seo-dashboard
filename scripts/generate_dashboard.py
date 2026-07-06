@@ -30,6 +30,24 @@ def score_label(s):
 def bar(pct, color='#4f46e5', height=8):
     return f'<div style="background:#e5e7eb;border-radius:4px;height:{height}px;"><div style="background:{color};width:{min(float(pct),100):.0f}%;height:{height}px;border-radius:4px;transition:width 0.3s;"></div></div>'
 
+def _sev_color(sev):
+    if sev == '严重': return '#ef4444'
+    if sev == '高': return '#f59e0b'
+    return '#6b7280'
+
+def _render_ser_issues(issues_dict):
+    parts = []
+    for v in issues_dict.values():
+        c = _sev_color(v.get('severity', ''))
+        parts.append(
+            f'<div style="background:#f8fafc;border-radius:8px;padding:10px;border-left:3px solid {c};">'
+            f'<div style="font-size:11px;font-weight:700;color:#1a1a1a;">{v["label"]}</div>'
+            f'<div style="font-size:20px;font-weight:800;color:{c};margin:2px 0;">{v["count"]}</div>'
+            f'<div style="font-size:10px;color:#888;">{str(v.get("description",""))[:60]}...</div>'
+            f'</div>'
+        )
+    return "".join(parts)
+
 # ── Issues checklist ──────────────────────────────────────────
 issues = [
     # (category, title, status, severity, fix, effort)
@@ -327,11 +345,7 @@ html = f'''<!DOCTYPE html>
   </div>
   <div style="font-size:12px;color:#888;margin-bottom:12px;">共 {ser.get("total_issues",0)} 个问题 · 爬取 {ser.get("pages_crawled",0)} 个页面 · 发现 {ser.get("urls_found",0)} 个 URL</div>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">
-    {"".join(f'''<div style="background:#f8fafc;border-radius:8px;padding:10px;border-left:3px solid {'#ef4444' if v['severity']=='严重' else '#f59e0b' if v['severity']=='高' else '#6b7280'};">
-      <div style="font-size:11px;font-weight:700;color:#1a1a1a;">{v['label']}</div>
-      <div style="font-size:20px;font-weight:800;color:{'#ef4444' if v['severity']=='严重' else '#f59e0b' if v['severity']=='高' else '#6b7280'};margin:2px 0;">{v['count']}</div>
-      <div style="font-size:10px;color:#888;">{v['description'][:60]}...</div>
-    </div>''' for v in ser.get("issues",{}).values())}
+    {_render_ser_issues(ser.get("issues",{}))}
   </div>
 </div>
 
