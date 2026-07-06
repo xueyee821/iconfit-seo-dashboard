@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T04:07:05.533736Z",
+  "generated_at": "2026-07-06T14:17:56.948126Z",
   "site": "https://iconfit.asia",
   "period_days": 90,
   "scores": {
@@ -262,43 +262,43 @@
     ]
   },
   "ga4": {
-    "total_sessions": 728,
+    "total_sessions": 743,
     "channels": [
       {
         "channel": "Direct",
-        "sessions": 550,
-        "users": 503,
-        "bounce": 89.3,
+        "sessions": 556,
+        "users": 508,
+        "bounce": 89.4,
         "duration": 92
       },
       {
         "channel": "Organic Search",
-        "sessions": 154,
-        "users": 51,
-        "bounce": 33.1,
-        "duration": 1034
+        "sessions": 157,
+        "users": 54,
+        "bounce": 34.4,
+        "duration": 1024
       },
       {
         "channel": "Referral",
-        "sessions": 19,
-        "users": 15,
-        "bounce": 10.5,
-        "duration": 148
+        "sessions": 21,
+        "users": 16,
+        "bounce": 19.0,
+        "duration": 160
       },
       {
         "channel": "Unassigned",
-        "sessions": 5,
-        "users": 3,
-        "bounce": 60.0,
-        "duration": 216
+        "sessions": 9,
+        "users": 7,
+        "bounce": 77.8,
+        "duration": 160
       }
     ],
     "top_pages": [
       {
         "page": "/",
-        "sessions": 208,
-        "bounce": 36.5,
-        "duration": 469
+        "sessions": 214,
+        "bounce": 38.3,
+        "duration": 460
       },
       {
         "page": "/zh/about-us/",
@@ -314,21 +314,21 @@
       },
       {
         "page": "/free-pass/",
-        "sessions": 63,
-        "bounce": 14.3,
-        "duration": 163
+        "sessions": 65,
+        "bounce": 16.9,
+        "duration": 159
       },
       {
         "page": "/about-us/",
-        "sessions": 48,
-        "bounce": 20.8,
-        "duration": 186
+        "sessions": 49,
+        "bounce": 22.4,
+        "duration": 183
       },
       {
         "page": "/contact-us/",
-        "sessions": 34,
-        "bounce": 11.8,
-        "duration": 100
+        "sessions": 37,
+        "bounce": 18.9,
+        "duration": 105
       },
       {
         "page": "/zh/",
