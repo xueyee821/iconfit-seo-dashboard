@@ -5,7 +5,8 @@ SE Ranking API → seranking.json 自动拉取脚本
 import os, json, datetime, urllib.request, urllib.error
 
 API_KEY   = os.environ.get('SERANKING_API_KEY', '')
-AUDIT_ID  = int(os.environ.get('SERANKING_AUDIT_ID', '700348552'))
+_audit_id_raw = os.environ.get('SERANKING_AUDIT_ID', '').strip()
+AUDIT_ID  = int(_audit_id_raw) if _audit_id_raw else 700348552
 BASE_URL  = 'https://api4.seranking.com'
 
 def api(path):
