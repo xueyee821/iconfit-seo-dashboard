@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-06",
+  "updated_at": "2026-07-13",
   "source": "SE Ranking API (自动)",
   "audit_id": 700348552,
   "health_score": 79,
@@ -20,7 +20,7 @@
     "duplicate_descriptions": {"count": 32, "label": "重复 Meta Description", "severity": "高", "description": "32个页面 meta description 与中文版完全一样", "effort": "2小时", "fix": "TranslatePress → 逐页翻译 meta description"},
     "duplicate_h1": {"count": 14, "label": "重复 H1 标签", "severity": "中", "description": "14个页面 H1 与中文版完全一样（未翻译）", "effort": "1小时", "fix": "TranslatePress → 翻译各页面 H1"},
     "same_title_h1": {"count": 68, "label": "Title 与 H1 完全相同", "severity": "低", "description": "68个页面的 Title 和 H1 内容完全一样，浪费优化空间", "effort": "持续", "fix": "将 Title 改为包含关键词的完整句子"},
-    "slow_pages": {"count": 11, "label": "页面加载速度慢", "severity": "高", "description": "11个页面加载慢（上周51个，本周大幅改善）", "effort": "持续", "fix": "Elementor → Improved Asset Loading；Breeze → JS defer + CSS 合并"},
+    "slow_pages": {"count": 11, "label": "页面加载速度慢", "severity": "高", "description": "11个页面加载慢", "effort": "持续", "fix": "Elementor → Improved Asset Loading；Breeze → JS defer + CSS 合并"},
     "internal_links_3xx": {"count": 8, "label": "内部链接指向重定向页", "severity": "中", "description": "8个内部链接指向3XX重定向页面，浪费 link equity", "effort": "30分钟", "fix": "更新内部链接直接指向最终URL"},
     "sitemap_missing": {"count": 1, "label": "XML Sitemap 缺失", "severity": "严重", "description": "网站缺少 XML sitemap，影响 Google 爬取效率", "effort": "10分钟", "fix": "Rank Math → Sitemap → 开启并提交到 GSC"}
   }
