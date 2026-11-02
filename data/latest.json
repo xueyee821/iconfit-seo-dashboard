@@ -1,50 +1,50 @@
 {
-  "generated_at": "2026-10-26T05:46:52.401902Z",
+  "generated_at": "2026-11-02T07:15:09.052379Z",
   "site": "https://iconfit.asia",
   "period_days": 90,
   "scores": {
-    "overall": 57,
+    "overall": 58,
     "technical": 70,
     "content": 58,
     "on_page": 55,
     "schema": 42,
     "performance": 50,
-    "ai": 43,
+    "ai": 53,
     "images": 75
   },
   "gsc": {
     "total_clicks": 110,
-    "total_impressions": 13054,
-    "avg_ctr": 0.84,
-    "avg_position": 14.9,
+    "total_impressions": 22617,
+    "avg_ctr": 0.49,
+    "avg_position": 11.3,
     "top_queries": [
       {
         "query": "iconfit",
         "clicks": 8,
-        "impressions": 144,
-        "ctr": 5.56,
-        "position": 3.7
+        "impressions": 147,
+        "ctr": 5.44,
+        "position": 4.1
       },
       {
         "query": "icon fitness",
         "clicks": 5,
-        "impressions": 123,
-        "ctr": 4.07,
-        "position": 5.9
+        "impressions": 125,
+        "ctr": 4.0,
+        "position": 5.3
       },
       {
         "query": "gym setia alam",
         "clicks": 4,
-        "impressions": 627,
-        "ctr": 0.64,
-        "position": 11.0
+        "impressions": 595,
+        "ctr": 0.67,
+        "position": 11.1
       },
       {
         "query": "malaysia gym membership price",
         "clicks": 2,
-        "impressions": 16,
-        "ctr": 12.5,
-        "position": 6.9
+        "impressions": 18,
+        "ctr": 11.11,
+        "position": 7.2
       },
       {
         "query": "aerobics near me",
@@ -56,23 +56,23 @@
       {
         "query": "boxing class shah alam",
         "clicks": 1,
-        "impressions": 6,
-        "ctr": 16.67,
-        "position": 10.7
+        "impressions": 3,
+        "ctr": 33.33,
+        "position": 11
       },
       {
         "query": "crossfit vs zumba",
         "clicks": 1,
-        "impressions": 8,
-        "ctr": 12.5,
-        "position": 6.6
+        "impressions": 114,
+        "ctr": 0.88,
+        "position": 8.6
       },
       {
         "query": "dance fitness vs zumba",
         "clicks": 1,
-        "impressions": 90,
-        "ctr": 1.11,
-        "position": 8.3
+        "impressions": 89,
+        "ctr": 1.12,
+        "position": 8.2
       },
       {
         "query": "fit metrics subang",
@@ -86,21 +86,21 @@
         "clicks": 1,
         "impressions": 5,
         "ctr": 20.0,
-        "position": 7.8
+        "position": 9
       },
       {
         "query": "gym membership malaysia",
         "clicks": 1,
-        "impressions": 17,
-        "ctr": 5.88,
-        "position": 19.1
+        "impressions": 19,
+        "ctr": 5.26,
+        "position": 18.8
       },
       {
         "query": "gym membership malaysia price",
         "clicks": 1,
-        "impressions": 32,
-        "ctr": 3.12,
-        "position": 9.3
+        "impressions": 35,
+        "ctr": 2.86,
+        "position": 9.4
       },
       {
         "query": "iconfit setia alam",
@@ -112,23 +112,23 @@
       {
         "query": "setia alam fitness hub",
         "clicks": 1,
-        "impressions": 44,
-        "ctr": 2.27,
-        "position": 9.0
+        "impressions": 35,
+        "ctr": 2.86,
+        "position": 9.3
       },
       {
         "query": "setia alam gym",
         "clicks": 1,
-        "impressions": 257,
-        "ctr": 0.39,
+        "impressions": 266,
+        "ctr": 0.38,
         "position": 12.6
       },
       {
         "query": "zumba near me",
         "clicks": 1,
-        "impressions": 6,
-        "ctr": 16.67,
-        "position": 16
+        "impressions": 5,
+        "ctr": 20.0,
+        "position": 15.2
       },
       {
         "query": "1 hour of zumba burns how many calories",
@@ -162,69 +162,69 @@
     "top_pages": [
       {
         "page": "/",
-        "clicks": 49,
-        "impressions": 4883,
-        "position": 11.6
+        "clicks": 48,
+        "impressions": 4947,
+        "position": 12.3
       },
       {
         "page": "/gym-membership-cost-im-malaysia-2026-price-guide/",
-        "clicks": 21,
-        "impressions": 2397,
-        "position": 10.2
+        "clicks": 23,
+        "impressions": 2519,
+        "position": 10.4
       },
       {
         "page": "/zh/gym-membership-cost-im-malaysia-2026-price-guide/",
         "clicks": 11,
-        "impressions": 807,
-        "position": 5.1
+        "impressions": 841,
+        "position": 5.5
       },
       {
         "page": "/shadow-boxing-class/",
         "clicks": 7,
-        "impressions": 286,
-        "position": 20.1
+        "impressions": 263,
+        "position": 20.9
       },
       {
         "page": "/why-do-beginners-feel-so-tired-after-working-out/",
         "clicks": 6,
-        "impressions": 325,
-        "position": 11.1
+        "impressions": 338,
+        "position": 10.9
       },
       {
         "page": "/zumba-classes-vs-dance-fitness-which-is-better-for-women/",
         "clicks": 5,
-        "impressions": 1391,
-        "position": 13.6
+        "impressions": 7372,
+        "position": 8.7
       },
       {
         "page": "/mobilitystrength-class/",
         "clicks": 2,
-        "impressions": 613,
-        "position": 53.0
+        "impressions": 632,
+        "position": 50.7
       },
       {
         "page": "/zumba-vs-everything-the-ultimate-comparison-guide-2/",
         "clicks": 2,
-        "impressions": 476,
-        "position": 10.5
+        "impressions": 3520,
+        "position": 6.6
       },
       {
         "page": "/fitness-classes/",
         "clicks": 1,
-        "impressions": 1033,
-        "position": 47.7
+        "impressions": 999,
+        "position": 46.8
       },
       {
         "page": "/free-pass/",
         "clicks": 1,
-        "impressions": 928,
-        "position": 39.6
+        "impressions": 866,
+        "position": 39.3
       }
     ],
     "countries": [
       {
         "country": "MYS",
-        "clicks": 88
+        "clicks": 89
       },
       {
         "country": "BGD",
@@ -246,37 +246,37 @@
     "devices": [
       {
         "device": "MOBILE",
-        "clicks": 73,
-        "impressions": 6605
+        "clicks": 74,
+        "impressions": 6617
       },
       {
         "device": "DESKTOP",
-        "clicks": 35,
-        "impressions": 6361
+        "clicks": 34,
+        "impressions": 15910
       },
       {
         "device": "TABLET",
         "clicks": 2,
-        "impressions": 88
+        "impressions": 90
       }
     ]
   },
   "ga4": {
-    "total_sessions": 792,
+    "total_sessions": 743,
     "channels": [
       {
         "channel": "Direct",
-        "sessions": 568,
-        "users": 552,
-        "bounce": 93.0,
-        "duration": 13
+        "sessions": 523,
+        "users": 516,
+        "bounce": 92.9,
+        "duration": 6
       },
       {
         "channel": "Organic Search",
         "sessions": 148,
-        "users": 99,
+        "users": 102,
         "bounce": 37.2,
-        "duration": 361
+        "duration": 295
       },
       {
         "channel": "Organic Social",
@@ -287,22 +287,22 @@
       },
       {
         "channel": "Referral",
-        "sessions": 28,
-        "users": 7,
-        "bounce": 35.7,
-        "duration": 692
+        "sessions": 24,
+        "users": 6,
+        "bounce": 37.5,
+        "duration": 766
       },
       {
         "channel": "AI Assistant",
-        "sessions": 10,
-        "users": 9,
-        "bounce": 50.0,
-        "duration": 46
+        "sessions": 11,
+        "users": 10,
+        "bounce": 54.5,
+        "duration": 43
       },
       {
         "channel": "Unassigned",
-        "sessions": 3,
-        "users": 3,
+        "sessions": 2,
+        "users": 2,
         "bounce": 100.0,
         "duration": 0
       }
@@ -310,9 +310,9 @@
     "top_pages": [
       {
         "page": "/",
-        "sessions": 218,
-        "bounce": 62.4,
-        "duration": 201
+        "sessions": 204,
+        "bounce": 63.2,
+        "duration": 176
       },
       {
         "page": "/quiz/",
@@ -322,15 +322,15 @@
       },
       {
         "page": "/gym-membership-cost-im-malaysia-2026-price-guide/",
-        "sessions": 39,
-        "bounce": 53.8,
-        "duration": 31
+        "sessions": 44,
+        "bounce": 54.5,
+        "duration": 30
       },
       {
         "page": "/free-pass/",
-        "sessions": 27,
-        "bounce": 11.1,
-        "duration": 235
+        "sessions": 25,
+        "bounce": 12.0,
+        "duration": 273
       },
       {
         "page": "/quiz-thank-you/",
@@ -339,34 +339,34 @@
         "duration": 286
       },
       {
-        "page": "/zh/mobility-exercises-every-beginner-should-do-and-why-they-prevent-injuries/",
-        "sessions": 20,
-        "bounce": 95.0,
-        "duration": 1
+        "page": "/zh/sitemap/",
+        "sessions": 19,
+        "bounce": 94.7,
+        "duration": 2
       },
       {
-        "page": "/about-us/",
-        "sessions": 19,
-        "bounce": 36.8,
-        "duration": 116
+        "page": "/zumba-classes-vs-dance-fitness-which-is-better-for-women/",
+        "sessions": 18,
+        "bounce": 88.9,
+        "duration": 5
       },
       {
         "page": "/zh/",
-        "sessions": 19,
-        "bounce": 78.9,
-        "duration": 8
-      },
-      {
-        "page": "/zh/about-us/",
-        "sessions": 19,
-        "bounce": 89.5,
-        "duration": 20
+        "sessions": 17,
+        "bounce": 88.2,
+        "duration": 4
       },
       {
         "page": "/zh/4-week-beginner-strength-plan-you-can-actually-stick-to/",
-        "sessions": 18,
-        "bounce": 88.9,
+        "sessions": 17,
+        "bounce": 88.2,
         "duration": 3
+      },
+      {
+        "page": "/zh/gym-membership-cost-im-malaysia-2026-price-guide/",
+        "sessions": 17,
+        "bounce": 47.1,
+        "duration": 23
       }
     ]
   },
@@ -380,7 +380,7 @@
     "rest_api_exposed": false,
     "rest_api_users": 0,
     "has_llms_txt": true,
-    "gptbot_allowed": false,
+    "gptbot_allowed": true,
     "claudebot_allowed": false,
     "wp_version_exposed": false,
     "wp_version": "",
