@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-02T07:15:09.052379Z",
+  "generated_at": "2026-11-09T07:40:00.638365Z",
   "site": "https://iconfit.asia",
   "period_days": 90,
   "scores": {
@@ -13,30 +13,30 @@
     "images": 75
   },
   "gsc": {
-    "total_clicks": 110,
-    "total_impressions": 22617,
-    "avg_ctr": 0.49,
-    "avg_position": 11.3,
+    "total_clicks": 113,
+    "total_impressions": 38305,
+    "avg_ctr": 0.3,
+    "avg_position": 9.1,
     "top_queries": [
       {
         "query": "iconfit",
-        "clicks": 8,
+        "clicks": 9,
         "impressions": 147,
-        "ctr": 5.44,
-        "position": 4.1
+        "ctr": 6.12,
+        "position": 4.3
       },
       {
         "query": "icon fitness",
         "clicks": 5,
-        "impressions": 125,
-        "ctr": 4.0,
-        "position": 5.3
+        "impressions": 124,
+        "ctr": 4.03,
+        "position": 3.5
       },
       {
         "query": "gym setia alam",
         "clicks": 4,
-        "impressions": 595,
-        "ctr": 0.67,
+        "impressions": 591,
+        "ctr": 0.68,
         "position": 11.1
       },
       {
@@ -56,22 +56,22 @@
       {
         "query": "boxing class shah alam",
         "clicks": 1,
-        "impressions": 3,
-        "ctr": 33.33,
-        "position": 11
+        "impressions": 4,
+        "ctr": 25.0,
+        "position": 11.5
       },
       {
         "query": "crossfit vs zumba",
         "clicks": 1,
-        "impressions": 114,
-        "ctr": 0.88,
-        "position": 8.6
+        "impressions": 579,
+        "ctr": 0.17,
+        "position": 5.2
       },
       {
         "query": "dance fitness vs zumba",
         "clicks": 1,
-        "impressions": 89,
-        "ctr": 1.12,
+        "impressions": 81,
+        "ctr": 1.23,
         "position": 8.2
       },
       {
@@ -84,51 +84,58 @@
       {
         "query": "fitness",
         "clicks": 1,
-        "impressions": 5,
-        "ctr": 20.0,
-        "position": 9
+        "impressions": 9,
+        "ctr": 11.11,
+        "position": 14.2
+      },
+      {
+        "query": "fitness setia alam",
+        "clicks": 1,
+        "impressions": 155,
+        "ctr": 0.65,
+        "position": 18.4
       },
       {
         "query": "gym membership malaysia",
         "clicks": 1,
-        "impressions": 19,
-        "ctr": 5.26,
-        "position": 18.8
+        "impressions": 21,
+        "ctr": 4.76,
+        "position": 18.9
       },
       {
         "query": "gym membership malaysia price",
         "clicks": 1,
-        "impressions": 35,
-        "ctr": 2.86,
-        "position": 9.4
+        "impressions": 40,
+        "ctr": 2.5,
+        "position": 9.2
       },
       {
         "query": "iconfit setia alam",
         "clicks": 1,
-        "impressions": 196,
+        "impressions": 198,
         "ctr": 0.51,
         "position": 3.2
       },
       {
         "query": "setia alam fitness hub",
         "clicks": 1,
-        "impressions": 35,
-        "ctr": 2.86,
-        "position": 9.3
+        "impressions": 20,
+        "ctr": 5.0,
+        "position": 9.1
       },
       {
         "query": "setia alam gym",
         "clicks": 1,
-        "impressions": 266,
-        "ctr": 0.38,
-        "position": 12.6
+        "impressions": 276,
+        "ctr": 0.36,
+        "position": 12.5
       },
       {
         "query": "zumba near me",
         "clicks": 1,
-        "impressions": 5,
-        "ctr": 20.0,
-        "position": 15.2
+        "impressions": 4,
+        "ctr": 25.0,
+        "position": 7.2
       },
       {
         "query": "1 hour of zumba burns how many calories",
@@ -150,81 +157,74 @@
         "impressions": 1,
         "ctr": 0,
         "position": 9
-      },
-      {
-        "query": "10 min zumba calories",
-        "clicks": 0,
-        "impressions": 1,
-        "ctr": 0,
-        "position": 3
       }
     ],
     "top_pages": [
       {
         "page": "/",
-        "clicks": 48,
-        "impressions": 4947,
-        "position": 12.3
+        "clicks": 51,
+        "impressions": 4984,
+        "position": 12.7
       },
       {
         "page": "/gym-membership-cost-im-malaysia-2026-price-guide/",
         "clicks": 23,
-        "impressions": 2519,
+        "impressions": 2670,
         "position": 10.4
       },
       {
         "page": "/zh/gym-membership-cost-im-malaysia-2026-price-guide/",
         "clicks": 11,
-        "impressions": 841,
-        "position": 5.5
+        "impressions": 868,
+        "position": 5.6
       },
       {
         "page": "/shadow-boxing-class/",
         "clicks": 7,
-        "impressions": 263,
-        "position": 20.9
+        "impressions": 249,
+        "position": 22.5
       },
       {
         "page": "/why-do-beginners-feel-so-tired-after-working-out/",
         "clicks": 6,
-        "impressions": 338,
-        "position": 10.9
+        "impressions": 348,
+        "position": 11.1
       },
       {
         "page": "/zumba-classes-vs-dance-fitness-which-is-better-for-women/",
         "clicks": 5,
-        "impressions": 7372,
-        "position": 8.7
+        "impressions": 17135,
+        "position": 7.6
       },
       {
         "page": "/mobilitystrength-class/",
         "clicks": 2,
-        "impressions": 632,
-        "position": 50.7
+        "impressions": 596,
+        "position": 48.0
       },
       {
         "page": "/zumba-vs-everything-the-ultimate-comparison-guide-2/",
         "clicks": 2,
-        "impressions": 3520,
-        "position": 6.6
+        "impressions": 8454,
+        "position": 6.0
       },
       {
         "page": "/fitness-classes/",
         "clicks": 1,
-        "impressions": 999,
-        "position": 46.8
+        "impressions": 957,
+        "position": 45.2
       },
       {
         "page": "/free-pass/",
         "clicks": 1,
-        "impressions": 866,
+        "impressions": 797,
         "position": 39.3
       }
     ],
     "countries": [
       {
         "country": "MYS",
-        "clicks": 89
+        "clicks": 92
       },
       {
         "country": "BGD",
@@ -246,37 +246,37 @@
     "devices": [
       {
         "device": "MOBILE",
-        "clicks": 74,
-        "impressions": 6617
+        "clicks": 78,
+        "impressions": 6700
       },
       {
         "device": "DESKTOP",
-        "clicks": 34,
-        "impressions": 15910
+        "clicks": 33,
+        "impressions": 31506
       },
       {
         "device": "TABLET",
         "clicks": 2,
-        "impressions": 90
+        "impressions": 99
       }
     ]
   },
   "ga4": {
-    "total_sessions": 743,
+    "total_sessions": 742,
     "channels": [
       {
         "channel": "Direct",
-        "sessions": 523,
-        "users": 516,
-        "bounce": 92.9,
+        "sessions": 517,
+        "users": 510,
+        "bounce": 92.8,
         "duration": 6
       },
       {
         "channel": "Organic Search",
-        "sessions": 148,
-        "users": 102,
-        "bounce": 37.2,
-        "duration": 295
+        "sessions": 153,
+        "users": 107,
+        "bounce": 35.9,
+        "duration": 290
       },
       {
         "channel": "Organic Social",
@@ -310,9 +310,9 @@
     "top_pages": [
       {
         "page": "/",
-        "sessions": 204,
-        "bounce": 63.2,
-        "duration": 176
+        "sessions": 211,
+        "bounce": 63.5,
+        "duration": 171
       },
       {
         "page": "/quiz/",
@@ -322,15 +322,15 @@
       },
       {
         "page": "/gym-membership-cost-im-malaysia-2026-price-guide/",
-        "sessions": 44,
-        "bounce": 54.5,
-        "duration": 30
+        "sessions": 46,
+        "bounce": 52.2,
+        "duration": 37
       },
       {
         "page": "/free-pass/",
-        "sessions": 25,
-        "bounce": 12.0,
-        "duration": 273
+        "sessions": 26,
+        "bounce": 15.4,
+        "duration": 263
       },
       {
         "page": "/quiz-thank-you/",
@@ -339,9 +339,15 @@
         "duration": 286
       },
       {
+        "page": "/zh/gym-membership-cost-im-malaysia-2026-price-guide/",
+        "sessions": 18,
+        "bounce": 50.0,
+        "duration": 22
+      },
+      {
         "page": "/zh/sitemap/",
-        "sessions": 19,
-        "bounce": 94.7,
+        "sessions": 18,
+        "bounce": 94.4,
         "duration": 2
       },
       {
@@ -361,12 +367,6 @@
         "sessions": 17,
         "bounce": 88.2,
         "duration": 3
-      },
-      {
-        "page": "/zh/gym-membership-cost-im-malaysia-2026-price-guide/",
-        "sessions": 17,
-        "bounce": 47.1,
-        "duration": 23
       }
     ]
   },
