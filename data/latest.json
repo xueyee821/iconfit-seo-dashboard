@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-16T07:40:03.714726Z",
+  "generated_at": "2026-11-23T08:35:52.903937Z",
   "site": "https://iconfit.asia",
   "period_days": 90,
   "scores": {
@@ -13,38 +13,38 @@
     "images": 75
   },
   "gsc": {
-    "total_clicks": 111,
-    "total_impressions": 50901,
-    "avg_ctr": 0.22,
-    "avg_position": 8.3,
+    "total_clicks": 102,
+    "total_impressions": 60418,
+    "avg_ctr": 0.17,
+    "avg_position": 7.9,
     "top_queries": [
       {
         "query": "iconfit",
-        "clicks": 10,
-        "impressions": 148,
-        "ctr": 6.76,
-        "position": 4.4
+        "clicks": 9,
+        "impressions": 163,
+        "ctr": 5.52,
+        "position": 6.2
       },
       {
         "query": "gym setia alam",
         "clicks": 4,
-        "impressions": 555,
-        "ctr": 0.72,
-        "position": 11.8
+        "impressions": 518,
+        "ctr": 0.77,
+        "position": 12.5
       },
       {
         "query": "icon fitness",
         "clicks": 3,
-        "impressions": 124,
-        "ctr": 2.42,
-        "position": 3.4
+        "impressions": 133,
+        "ctr": 2.26,
+        "position": 7.4
       },
       {
         "query": "malaysia gym membership price",
         "clicks": 2,
-        "impressions": 18,
-        "ctr": 11.11,
-        "position": 7.2
+        "impressions": 16,
+        "ctr": 12.5,
+        "position": 7.5
       },
       {
         "query": "aerobics near me",
@@ -54,18 +54,11 @@
         "position": 9
       },
       {
-        "query": "boxing class shah alam",
-        "clicks": 1,
-        "impressions": 3,
-        "ctr": 33.33,
-        "position": 12
-      },
-      {
         "query": "crossfit vs zumba",
         "clicks": 1,
-        "impressions": 1046,
-        "ctr": 0.1,
-        "position": 5.1
+        "impressions": 1230,
+        "ctr": 0.08,
+        "position": 5.2
       },
       {
         "query": "fit metrics subang",
@@ -77,51 +70,30 @@
       {
         "query": "fitness",
         "clicks": 1,
-        "impressions": 16,
-        "ctr": 6.25,
-        "position": 19.9
+        "impressions": 17,
+        "ctr": 5.88,
+        "position": 21.6
       },
       {
         "query": "fitness setia alam",
         "clicks": 1,
-        "impressions": 155,
-        "ctr": 0.65,
-        "position": 18.8
+        "impressions": 157,
+        "ctr": 0.64,
+        "position": 21.0
       },
       {
         "query": "gym membership malaysia",
         "clicks": 1,
         "impressions": 26,
         "ctr": 3.85,
-        "position": 19.3
-      },
-      {
-        "query": "gym membership malaysia price",
-        "clicks": 1,
-        "impressions": 41,
-        "ctr": 2.44,
-        "position": 9.0
+        "position": 19.5
       },
       {
         "query": "iconfit setia alam",
         "clicks": 1,
-        "impressions": 206,
-        "ctr": 0.49,
-        "position": 3.3
-      },
-      {
-        "query": "setia alam fitness hub",
-        "clicks": 1,
-        "impressions": 14,
-        "ctr": 7.14,
-        "position": 8.4
-      },
-      {
-        "query": "setia alam gym",
-        "clicks": 1,
-        "impressions": 272,
-        "ctr": 0.37,
-        "position": 12.5
+        "impressions": 243,
+        "ctr": 0.41,
+        "position": 8.0
       },
       {
         "query": "zumba near me",
@@ -157,74 +129,102 @@
         "impressions": 1,
         "ctr": 0,
         "position": 3
+      },
+      {
+        "query": "10reps ladies gym",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 6
+      },
+      {
+        "query": "20 min zumba calories burned",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 3
+      },
+      {
+        "query": "24/7 gym near me",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 6
+      },
+      {
+        "query": "3 month gym membership near me",
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": 2
       }
     ],
     "top_pages": [
       {
         "page": "/",
-        "clicks": 49,
-        "impressions": 4994,
-        "position": 13.1
+        "clicks": 45,
+        "impressions": 4955,
+        "position": 13.8
       },
       {
         "page": "/gym-membership-cost-im-malaysia-2026-price-guide/",
-        "clicks": 24,
-        "impressions": 2842,
-        "position": 10.6
+        "clicks": 21,
+        "impressions": 2766,
+        "position": 10.4
       },
       {
         "page": "/zh/gym-membership-cost-im-malaysia-2026-price-guide/",
-        "clicks": 11,
-        "impressions": 885,
+        "clicks": 12,
+        "impressions": 899,
         "position": 5.6
-      },
-      {
-        "page": "/shadow-boxing-class/",
-        "clicks": 7,
-        "impressions": 226,
-        "position": 22.4
       },
       {
         "page": "/why-do-beginners-feel-so-tired-after-working-out/",
         "clicks": 6,
-        "impressions": 363,
-        "position": 11.6
+        "impressions": 372,
+        "position": 10.6
+      },
+      {
+        "page": "/shadow-boxing-class/",
+        "clicks": 5,
+        "impressions": 196,
+        "position": 18.3
       },
       {
         "page": "/zumba-classes-vs-dance-fitness-which-is-better-for-women/",
         "clicks": 4,
-        "impressions": 24701,
+        "impressions": 29927,
         "position": 7.5
-      },
-      {
-        "page": "/mobilitystrength-class/",
-        "clicks": 2,
-        "impressions": 588,
-        "position": 46.0
       },
       {
         "page": "/zumba-vs-everything-the-ultimate-comparison-guide-2/",
         "clicks": 2,
-        "impressions": 12031,
-        "position": 5.9
+        "impressions": 13576,
+        "position": 5.7
       },
       {
         "page": "/fitness-classes/",
         "clicks": 1,
-        "impressions": 945,
-        "position": 44.5
+        "impressions": 913,
+        "position": 43.9
       },
       {
         "page": "/free-pass/",
         "clicks": 1,
-        "impressions": 761,
-        "position": 38.6
+        "impressions": 734,
+        "position": 36.5
+      },
+      {
+        "page": "/how-to-choose-a-gym-or-fitness-club-in-setia-alam-2/",
+        "clicks": 1,
+        "impressions": 36,
+        "position": 8.4
       }
     ],
     "countries": [
       {
         "country": "MYS",
-        "clicks": 91
+        "clicks": 80
       },
       {
         "country": "BGD",
@@ -232,72 +232,72 @@
       },
       {
         "country": "USA",
-        "clicks": 4
+        "clicks": 5
       },
       {
         "country": "GBR",
         "clicks": 3
       },
       {
-        "country": "CAN",
+        "country": "AUS",
         "clicks": 2
       }
     ],
     "devices": [
       {
         "device": "MOBILE",
-        "clicks": 76,
-        "impressions": 6692
+        "clicks": 67,
+        "impressions": 6376
       },
       {
         "device": "DESKTOP",
         "clicks": 33,
-        "impressions": 44107
+        "impressions": 53946
       },
       {
         "device": "TABLET",
         "clicks": 2,
-        "impressions": 102
+        "impressions": 96
       }
     ]
   },
   "ga4": {
-    "total_sessions": 717,
+    "total_sessions": 672,
     "channels": [
       {
         "channel": "Direct",
-        "sessions": 509,
-        "users": 505,
-        "bounce": 93.9,
+        "sessions": 515,
+        "users": 512,
+        "bounce": 94.0,
         "duration": 2
       },
       {
         "channel": "Organic Search",
-        "sessions": 139,
-        "users": 107,
-        "bounce": 34.5,
-        "duration": 216
-      },
-      {
-        "channel": "Organic Social",
-        "sessions": 35,
-        "users": 34,
-        "bounce": 45.7,
-        "duration": 60
+        "sessions": 122,
+        "users": 99,
+        "bounce": 33.6,
+        "duration": 194
       },
       {
         "channel": "Referral",
-        "sessions": 22,
+        "sessions": 20,
         "users": 5,
-        "bounce": 40.9,
-        "duration": 705
+        "bounce": 40.0,
+        "duration": 734
       },
       {
         "channel": "AI Assistant",
-        "sessions": 10,
-        "users": 9,
-        "bounce": 60.0,
-        "duration": 42
+        "sessions": 11,
+        "users": 10,
+        "bounce": 45.5,
+        "duration": 45
+      },
+      {
+        "channel": "Organic Social",
+        "sessions": 2,
+        "users": 2,
+        "bounce": 0.0,
+        "duration": 29
       },
       {
         "channel": "Unassigned",
@@ -310,33 +310,21 @@
     "top_pages": [
       {
         "page": "/",
-        "sessions": 195,
-        "bounce": 66.7,
-        "duration": 135
+        "sessions": 185,
+        "bounce": 69.2,
+        "duration": 113
       },
       {
         "page": "/gym-membership-cost-im-malaysia-2026-price-guide/",
-        "sessions": 47,
-        "bounce": 51.1,
-        "duration": 37
-      },
-      {
-        "page": "/quiz/",
-        "sessions": 44,
-        "bounce": 52.3,
-        "duration": 85
+        "sessions": 43,
+        "bounce": 55.8,
+        "duration": 32
       },
       {
         "page": "/zh/sitemap/",
         "sessions": 19,
         "bounce": 89.5,
         "duration": 3
-      },
-      {
-        "page": "/free-pass/",
-        "sessions": 18,
-        "bounce": 16.7,
-        "duration": 191
       },
       {
         "page": "/zh/gym-membership-cost-im-malaysia-2026-price-guide/",
@@ -358,15 +346,27 @@
       },
       {
         "page": "/zumba-vs-everything-the-ultimate-comparison-guide-2/",
-        "sessions": 17,
-        "bounce": 70.6,
-        "duration": 11
+        "sessions": 16,
+        "bounce": 75.0,
+        "duration": 9
       },
       {
-        "page": "/quiz-thank-you/",
-        "sessions": 16,
-        "bounce": 18.8,
-        "duration": 355
+        "page": "/why-do-beginners-feel-so-tired-after-working-out/",
+        "sessions": 15,
+        "bounce": 60.0,
+        "duration": 46
+      },
+      {
+        "page": "/zumbatoning-class/",
+        "sessions": 15,
+        "bounce": 20.0,
+        "duration": 61
+      },
+      {
+        "page": "/free-pass/",
+        "sessions": 14,
+        "bounce": 21.4,
+        "duration": 237
       }
     ]
   },
